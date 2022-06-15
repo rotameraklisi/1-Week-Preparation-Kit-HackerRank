@@ -1,0 +1,69 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+class Result {
+
+    /*
+     * Complete the 'timeConversion' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts STRING s as parameter.
+     *-1 DAY-
+     *Complete the timeConversion function in the editor below. It should return a new string representing the input time in 24 hour format.
+     */
+
+    public static String timeConversion(String s) {
+    // Write your code here
+    String[] time = s.split(":");
+    int min = 0;
+    if(time[2].substring(2,4).equals("PM"))
+    {
+        min = Integer.valueOf(time[0]) + 12;
+        if(time[0].equals("12"))
+        {
+            time[0] = "12";
+        }
+        else if(min == 24)
+        {
+          time[0] = "00";
+        }
+        else{
+           time[0] = String.valueOf(min);
+        }
+    }
+    else if(time[2].substring(2,4).equals("AM") && time[0].equals("12")){
+            time[0] = "00";
+    }
+    
+    return time[0]+":"+time[1]+":"+time[2].substring(0,2);
+    }
+
+//SimpleDateFormat formatDate = new SimpleDateFormat("hh:mm:ss");
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = bufferedReader.readLine();
+
+        String result = Result.timeConversion(s);
+
+        bufferedWriter.write(result);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
