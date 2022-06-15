@@ -1,4 +1,4 @@
-# Plus-Minus-
+-Plus-Minus 
 Print the ratios of positive, negative and zero values in the array. Each value should be printed on a separate line with  digits after the decimal. The function should not return a value.
 
 Sample Input
